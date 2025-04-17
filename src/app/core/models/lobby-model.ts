@@ -6,5 +6,5 @@ export interface LobbyModel {
   created: Date;
   updated: Date;
   closed: Date;
-  userList: UserModel[];
+  userList?: UserModel[];
 }

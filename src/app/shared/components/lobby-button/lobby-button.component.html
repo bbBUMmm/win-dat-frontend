@@ -1,1 +1,7 @@
-<button (click)="displayLobbies()">Display lobbies</button>
+<button (click)="loadLobbies()">Load Lobbies</button>
+<button (click)="loginUser()">Login</button>
+<ul *ngIf="lobbies$ | async as lobbies">
+  <li *ngFor="let lobby of lobbies">{{ lobby.name }}</li>
+</ul>
+<div *ngIf="loading$ | async">Loading lobbies...</div>
+<div *ngIf="error$ | async as error">Error loading lobbies: {{ error }}</div>
