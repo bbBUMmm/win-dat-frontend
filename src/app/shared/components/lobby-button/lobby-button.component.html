@@ -1,5 +1,5 @@
 <button (click)="loadLobbies()">Load Lobbies</button>
-<button (click)="loginUser()">Login</button>
+<button (click)="loginUser()  ">Login</button>
 <ul *ngIf="lobbies$ | async as lobbies">
   <li *ngFor="let lobby of lobbies">{{ lobby.name }}</li>
 </ul>
