@@ -1,13 +1,11 @@
-<button hlmBtn (click)="loadLobbies()">Load Lobbies</button>
-<ul *ngIf="lobbies$ | async as lobbies">
-  <li *ngFor="let lobby of lobbies">{{ lobby.name }}</li>
-</ul>
-<div *ngIf="loading$ | async">Loading lobbies...</div>
-<div *ngIf="error$ | async as error">
-  <!-- Destructive Alert -->
-  <div hlmAlert variant="destructive">
-    <ng-icon hlm hlmAlertIcon name="lucideTriangleAlert" />
-    <h4 hlmAlertTitle>Unexpected Error</h4>
-    <p hlmAlertDesc>{{ error }}</p>
+<div class="flex flex-col items-center">
+  <button hlmBtn (click)="loadLobbies()">Load Lobbies</button>
+  <div *ngIf="loading$ | async" class="mt-2">Loading lobbies...</div>
+  <div *ngIf="error$ | async as error" class="mt-4 max-w-md w-full">
+    <div hlmAlert variant="destructive">
+      <ng-icon hlm hlmAlertIcon name="lucideTriangleAlert" />
+      <h4 hlmAlertTitle>Unexpected Error</h4>
+      <p hlmAlertDesc>{{ error }}</p>
+    </div>
   </div>
 </div>

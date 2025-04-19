@@ -20,6 +20,7 @@ import { lucideTriangleAlert } from '@ng-icons/lucide';
 //  Spartan Button
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import {NgIcon} from '@ng-icons/core';
+import {LobbyStateService} from '../../../core/services/lobbyState.service';
 //  Spartan Button
 @Component({
   selector: 'app-lobby-button',
@@ -42,21 +43,27 @@ import {NgIcon} from '@ng-icons/core';
 })
 export class LobbyButtonComponent {
   private lobbiesApiService = inject(LobbyApiService);
+  private lobbyState = inject(LobbyStateService);
 
   lobbies$: Observable<LobbyModel[]> | undefined;
   loading$ = new BehaviorSubject<boolean>(false);
-  error$ = new BehaviorSubject<string | null>(null);
+  error$ = new BehaviorSubject<string |   null>(null);
 
   loadLobbies() {
     this.loading$.next(true);
     this.error$.next(null);
+
     this.lobbies$ = this.lobbiesApiService.getLobbies().pipe(
       finalize(() => this.loading$.next(false)),
       catchError((error) => {
         this.error$.next('Failed to load lobbies.');
         console.error('Error loading lobbies', error);
-        return of([]); // Return an empty observable to avoid breaking the stream
+        return of([]);
       })
     );
+
+    this.lobbies$.subscribe((lobbies) => {
+      this.lobbyState.setLobbies(lobbies);
+    });
   }
 }

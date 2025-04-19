@@ -1,0 +1,124 @@
+{
+  "nodes": {
+    "win-dat-frontend": {
+      "name": "win-dat-frontend",
+      "type": "app",
+      "data": {
+        "root": "",
+        "projectType": "application",
+        "sourceRoot": "src",
+        "prefix": "app",
+        "name": "win-dat-frontend",
+        "generators": {
+          "@schematics/angular:component": {
+            "style": "none",
+            "skipTests": true
+          }
+        },
+        "targets": {
+          "build": {
+            "executor": "@angular-devkit/build-angular:application",
+            "options": {
+              "outputPath": "dist/win-dat-frontend",
+              "index": "src/index.html",
+              "browser": "src/main.ts",
+              "polyfills": [
+                "zone.js"
+              ],
+              "tsConfig": "tsconfig.app.json",
+              "inlineStyleLanguage": "scss",
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "public"
+                }
+              ],
+              "styles": [
+                "src/styles/styles.scss"
+              ],
+              "scripts": []
+            },
+            "configurations": {
+              "production": {
+                "budgets": [
+                  {
+                    "type": "initial",
+                    "maximumWarning": "500kB",
+                    "maximumError": "1MB"
+                  },
+                  {
+                    "type": "anyComponentStyle",
+                    "maximumWarning": "4kB",
+                    "maximumError": "8kB"
+                  }
+                ],
+                "outputHashing": "all"
+              },
+              "development": {
+                "optimization": false,
+                "extractLicenses": false,
+                "sourceMap": true
+              }
+            },
+            "defaultConfiguration": "production",
+            "parallelism": true
+          },
+          "serve": {
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "options": {
+              "proxyConfig": "proxy.conf.json"
+            },
+            "configurations": {
+              "production": {
+                "buildTarget": "win-dat-frontend:build:production"
+              },
+              "development": {
+                "buildTarget": "win-dat-frontend:build:development"
+              }
+            },
+            "defaultConfiguration": "development",
+            "parallelism": true
+          },
+          "extract-i18n": {
+            "executor": "@angular-devkit/build-angular:extract-i18n",
+            "configurations": {},
+            "options": {},
+            "parallelism": true
+          },
+          "test": {
+            "executor": "@angular-devkit/build-angular:karma",
+            "options": {
+              "polyfills": [
+                "zone.js",
+                "zone.js/testing"
+              ],
+              "tsConfig": "tsconfig.spec.json",
+              "inlineStyleLanguage": "scss",
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "public"
+                }
+              ],
+              "styles": [
+                "src/styles/styles.scss"
+              ],
+              "scripts": []
+            },
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": [],
+        "tags": []
+      }
+    }
+  },
+  "externalNodes": {},
+  "dependencies": {
+    "win-dat-frontend": []
+  },
+  "version": "6.0",
+  "errors": [],
+  "computedAt": 1745100337236
+}
