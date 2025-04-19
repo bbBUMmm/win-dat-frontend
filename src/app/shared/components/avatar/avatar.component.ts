@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {HlmAvatarComponent, HlmAvatarFallbackDirective, HlmAvatarImageDirective} from '@spartan-ng/ui-avatar-helm';
 import {provideIcons} from '@ng-icons/core';
 import {
@@ -17,7 +17,6 @@ import {
   lucideCirclePlus,
   lucideCircleHelp,
 } from '@ng-icons/lucide';
-import {HlmButtonDirective} from '@spartan-ng/ui-button-helm';
 import {HlmIconDirective} from '@spartan-ng/ui-icon-helm';
 import {BrnMenuTriggerDirective} from '@spartan-ng/brain/menu';
 import {
@@ -31,6 +30,8 @@ import {
   HlmMenuShortcutComponent,
   HlmSubMenuComponent,
 } from '@spartan-ng/ui-menu-helm';
+import {UserService} from '../../../user.service';
+import {ToastService} from '../../../core/services/toast.service';
 
 @Component({
   selector: 'app-avatar',
@@ -49,8 +50,8 @@ import {
     HlmMenuItemIconDirective,
     HlmMenuGroupComponent,
 
-    HlmButtonDirective,
-    HlmIconDirective,],
+    HlmIconDirective,
+  ],
   providers: [
     provideIcons({
       lucideUser,
@@ -73,5 +74,20 @@ import {
   templateUrl: './avatar.component.html'
 })
 export class AvatarComponent {
+  private userService = inject(UserService);
+  private toasterService = inject(ToastService);
 
+  user = this.userService.getUserSignal();
+
+  loginUser() {
+    this.userService.login()
+    this.toasterService.showToast("login succsefsld", "sdfsdf ahaha")
+  }
+
+
+  logoutUser() {
+    if (this.user()){
+      this.userService.logout()
+    }
+  }
 }

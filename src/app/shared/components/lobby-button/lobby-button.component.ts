@@ -41,8 +41,6 @@ import {NgIcon} from '@ng-icons/core';
   standalone: true,
 })
 export class LobbyButtonComponent {
-
-  private userService = inject(UserService);
   private lobbiesApiService = inject(LobbyApiService);
 
   lobbies$: Observable<LobbyModel[]> | undefined;
@@ -60,9 +58,5 @@ export class LobbyButtonComponent {
         return of([]); // Return an empty observable to avoid breaking the stream
       })
     );
-  }
-
-  loginUser(){
-    this.userService.login()
   }
 }
