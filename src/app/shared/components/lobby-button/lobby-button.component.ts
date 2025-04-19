@@ -5,13 +5,38 @@ import {LobbyModel} from '../../../core/models/lobby-model';
 import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
 import {UserService} from '../../../user.service';
 
+// Alert
+import {
+  HlmAlertDescriptionDirective,
+  HlmAlertDirective,
+  HlmAlertIconDirective,
+  HlmAlertTitleDirective,
+} from '@spartan-ng/ui-alert-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { provideIcons } from '@ng-icons/core';
+import { lucideTriangleAlert } from '@ng-icons/lucide';
+// Alert
+
+//  Spartan Button
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import {NgIcon} from '@ng-icons/core';
+//  Spartan Button
 @Component({
   selector: 'app-lobby-button',
   imports: [
+    HlmButtonDirective,
     AsyncPipe,
     NgIf,
-    NgForOf
+    NgForOf,
+    NgIcon,
+    HlmAlertDescriptionDirective,
+    HlmAlertDirective,
+    HlmAlertIconDirective,
+    HlmAlertTitleDirective,
+    HlmIconDirective
+
   ],
+  providers: [provideIcons({ lucideTriangleAlert })],
   templateUrl: './lobby-button.component.html',
   standalone: true,
 })

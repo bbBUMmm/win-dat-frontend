@@ -1,7 +1,14 @@
-<button (click)="loadLobbies()">Load Lobbies</button>
-<button (click)="loginUser()  ">Login</button>
+<button hlmBtn (click)="loadLobbies()">Load Lobbies</button>
+<button hlmBtn variant="secondary" (click)="loginUser()  ">Login</button>
 <ul *ngIf="lobbies$ | async as lobbies">
   <li *ngFor="let lobby of lobbies">{{ lobby.name }}</li>
 </ul>
 <div *ngIf="loading$ | async">Loading lobbies...</div>
-<div *ngIf="error$ | async as error">Error loading lobbies: {{ error }}</div>
+<div *ngIf="error$ | async as error">
+  <!-- Destructive Alert -->
+  <div hlmAlert variant="destructive">
+    <ng-icon hlm hlmAlertIcon name="lucideTriangleAlert" />
+    <h4 hlmAlertTitle>Unexpected Error</h4>
+    <p hlmAlertDesc>{{ error }}</p>
+  </div>
+</div>

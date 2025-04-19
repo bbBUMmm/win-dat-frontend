@@ -24,6 +24,7 @@
     "@spartan-ng/ui-core": "^0.0.1-alpha.380",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "ngx-sonner": "^3.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

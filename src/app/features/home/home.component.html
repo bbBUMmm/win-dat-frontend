@@ -1,19 +1,29 @@
-<app-lobby></app-lobby>
-<app-lobby-button></app-lobby-button>
+<app-header></app-header>
+<div class="home-wrapper bg-zinc-50 flex w-full min-h-screen">
+  <div>
+    YEP
+  </div>
+  <app-lobby></app-lobby>
+  <app-lobby-button></app-lobby-button>
 
-<!-- Info Alert -->
-<div hlmAlert>
-  <ng-icon hlm hlmAlertIcon name="lucideBox" />
-  <h4 hlmAlertTitle>Introducing spartan/ui!</h4>
-  <p hlmAlertDesc>
-    spartan/ui is made up of unstyled UI providers, the spartan/ui/brain.<br />
-    On top we add spartan/ui/helm(et) with shadcn-like styles.
-  </p>
-</div>
+  <hlm-alert-dialog>
+    <button id='edit-profile' variant='outline' brnAlertDialogTrigger hlmBtn>Delete Account</button>
+    <hlm-alert-dialog-content *brnAlertDialogContent='let ctx'>
+      <hlm-alert-dialog-header>
+        <h3 hlmAlertDialogTitle>Are you absolutely sure?</h3>
+        <p hlmAlertDialogDescription>
+          This action cannot be undone. This will permanently delete your account and remove your data from our
+          servers.
+        </p>
+      </hlm-alert-dialog-header>
+      <hlm-alert-dialog-footer>
+        <button hlmAlertDialogCancel (click)='ctx.close()'>Cancel</button>
+        <button hlmAlertDialogAction (click)='ctx.close()'>Delete account</button>
+      </hlm-alert-dialog-footer>
+    </hlm-alert-dialog-content>
+  </hlm-alert-dialog>
 
-<!-- Destructive Alert -->
-<div hlmAlert variant="destructive">
-  <ng-icon hlm hlmAlertIcon name="lucideTriangleAlert" />
-  <h4 hlmAlertTitle>Unexpected Error</h4>
-  <p hlmAlertDesc>Your session has expired. Please log in again.</p>
+  <br>
+  <hlm-toaster />
+  <button hlmBtn (click)="showToast()">Show Toast</button>
 </div>

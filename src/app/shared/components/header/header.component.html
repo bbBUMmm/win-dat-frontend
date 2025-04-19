@@ -1,0 +1,59 @@
+<div class="flex bg-primary text-zinc-50">
+  <!-- Left: Header -->
+  <div class="header flex items-center justify-center text-2xl flex-1">
+    <h1>WinDat!</h1>
+  </div>
+
+  <!-- Center: Breadcrumb -->
+  <div class="breadcrumb-wrapper flex items-center justify-center mt-10 mb-10 flex-1">
+    <nav hlmBreadcrumb>
+      <ol hlmBreadcrumbList>
+        <li hlmBreadcrumbItem>
+          <a class="px-2 py-1 border border-transparent hover:border-amber-200 rounded
+          transition-colors duration-200 hover:text-zinc-50 text-zinc-50"
+             hlmBreadcrumbLink
+             link="/home">Home</a>
+        </li>
+        <li hlmBreadcrumbSeparator></li>
+        <li hlmBreadcrumbItem>
+          <hlm-breadcrumb-ellipsis class="h-4 w-4" [brnMenuTriggerFor]="breadcrumbDropdown" />
+          <ng-template #breadcrumbDropdown>
+            <hlm-menu>
+              <button hlmMenuItem id="addCredits" (click)="notImplementedYet()">
+                <span>Add Credits</span>
+              </button>
+              <button hlmMenuItem id="withdrawCredits" (click)="notImplementedYet()">
+                <span>Withdraw Credits</span>
+              </button>
+              <button hlmMenuItem id="someFeature" (click)="notImplementedYet()">
+                <span>Some Feature</span>
+              </button>
+            </hlm-menu>
+          </ng-template>
+        </li>
+        <li hlmBreadcrumbSeparator></li>
+        <li hlmBreadcrumbItem>
+          <a
+            hlmBreadcrumbLink
+            hlmL
+            class="px-2 py-1 border border-transparent hover:border-amber-200
+             rounded transition-colors duration-200 hover:text-zinc-50 text-zinc-50"
+            link="/leaderboard"
+          >Leaderboard</a>
+        </li>
+        <li hlmBreadcrumbSeparator></li>
+        <li hlmBreadcrumbItem>
+          <a hlmBreadcrumbPage
+                class="px-2 py-1 border border-transparent hover:border-amber-200 rounded
+                transition-colors duration-200 hover:text-zinc-50 text-zinc-50"
+             href="https://github.com/bbBUMmm/win-dat" target="_blank">GitHub</a>
+        </li>
+      </ol>
+    </nav>
+  </div>
+
+  <!-- Right: Avatar -->
+  <div class="login-avatar flex items-center justify-center flex-1">
+    <app-avatar></app-avatar>
+  </div>
+</div>
