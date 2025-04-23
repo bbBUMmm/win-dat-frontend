@@ -1,43 +1,75 @@
 import {Component, inject} from '@angular/core';
 import {LobbyApiService} from '../../../features/lobby/services/lobby-api.service';
-import {BehaviorSubject, catchError, finalize, Observable, of} from 'rxjs';
+import {BehaviorSubject, catchError, finalize, Observable, of, switchMap} from 'rxjs';
 import {LobbyModel} from '../../../core/models/lobby-model';
 import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
 import {UserService} from '../../../user.service';
 
+// Alert
+import {
+  HlmAlertDescriptionDirective,
+  HlmAlertDirective,
+  HlmAlertIconDirective,
+  HlmAlertTitleDirective,
+} from '@spartan-ng/ui-alert-helm';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import { provideIcons } from '@ng-icons/core';
+import { lucideTriangleAlert } from '@ng-icons/lucide';
+// Alert
+
+//  Spartan Button
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import {NgIcon} from '@ng-icons/core';
+import {LobbyStateService} from '../../../core/services/lobbyState.service';
+//  Spartan Button
 @Component({
   selector: 'app-lobby-button',
   imports: [
+    HlmButtonDirective,
     AsyncPipe,
     NgIf,
-    NgForOf
+    NgForOf,
+    NgIcon,
+    HlmAlertDescriptionDirective,
+    HlmAlertDirective,
+    HlmAlertIconDirective,
+    HlmAlertTitleDirective,
+    HlmIconDirective
+
   ],
+  providers: [provideIcons({ lucideTriangleAlert })],
   templateUrl: './lobby-button.component.html',
   standalone: true,
 })
 export class LobbyButtonComponent {
-
-  private userService = inject(UserService);
   private lobbiesApiService = inject(LobbyApiService);
+  private lobbyState = inject(LobbyStateService);
 
-  lobbies$: Observable<LobbyModel[]> | undefined;
+  private refreshLobbies$ = new BehaviorSubject<void>(undefined);
+  lobbies$: Observable<LobbyModel[]> = this.refreshLobbies$.pipe(
+    switchMap(() => {
+      this.loading$.next(true);
+      this.error$.next(null);
+      return this.lobbiesApiService.getLobbies().pipe(
+        finalize(() => this.loading$.next(false)),
+        catchError((error) => {
+          this.error$.next('Failed to load lobbies.');
+          console.error('Error loading lobbies', error);
+          return of([]);
+        })
+      );
+    })
+  );
   loading$ = new BehaviorSubject<boolean>(false);
   error$ = new BehaviorSubject<string | null>(null);
 
-  loadLobbies() {
-    this.loading$.next(true);
-    this.error$.next(null);
-    this.lobbies$ = this.lobbiesApiService.getLobbies().pipe(
-      finalize(() => this.loading$.next(false)),
-      catchError((error) => {
-        this.error$.next('Failed to load lobbies.');
-        console.error('Error loading lobbies', error);
-        return of([]); // Return an empty observable to avoid breaking the stream
-      })
-    );
+  constructor() {
+    this.lobbies$.subscribe((lobbies) => {
+      this.lobbyState.setLobbies(lobbies);
+    });
   }
 
-  loginUser(){
-    this.userService.login()
+  loadLobbies() {
+    this.refreshLobbies$.next(undefined);
   }
 }
