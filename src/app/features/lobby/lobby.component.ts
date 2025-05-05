@@ -1,5 +1,4 @@
 import {Component, inject} from '@angular/core';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
 
 import {
   HlmCaptionComponent,
@@ -11,7 +10,7 @@ import {
 import {LobbyStateService} from '../../core/services/lobbyState.service';
 @Component({
   selector: 'app-lobby',
-  imports: [HlmBadgeDirective, HlmTableComponent, HlmTrowComponent, HlmThComponent, HlmTdComponent, HlmCaptionComponent],
+  imports: [HlmTableComponent, HlmTrowComponent, HlmThComponent, HlmTdComponent, HlmCaptionComponent],
   host: {
     class: 'w-full overflow-x-auto',
   },

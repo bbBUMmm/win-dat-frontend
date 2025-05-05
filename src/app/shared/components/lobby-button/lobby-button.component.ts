@@ -2,8 +2,7 @@ import {Component, inject} from '@angular/core';
 import {LobbyApiService} from '../../../features/lobby/services/lobby-api.service';
 import {BehaviorSubject, catchError, finalize, Observable, of, switchMap} from 'rxjs';
 import {LobbyModel} from '../../../core/models/lobby-model';
-import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
-import {UserService} from '../../../user.service';
+import {AsyncPipe, NgIf} from '@angular/common';
 
 // Alert
 import {
@@ -28,7 +27,6 @@ import {LobbyStateService} from '../../../core/services/lobbyState.service';
     HlmButtonDirective,
     AsyncPipe,
     NgIf,
-    NgForOf,
     NgIcon,
     HlmAlertDescriptionDirective,
     HlmAlertDirective,
