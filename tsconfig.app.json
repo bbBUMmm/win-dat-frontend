@@ -7,7 +7,11 @@
       "@spartan-ng/ui-table-helm": ["./libs/ui/ui-table-helm/src/index.ts"],
       "@spartan-ng/ui-avatar-helm": ["./libs/ui/ui-avatar-helm/src/index.ts"],
       "@spartan-ng/ui-icon-helm": ["./libs/ui/ui-icon-helm/src/index.ts"],
-      "@spartan-ng/ui-menu-helm": ["./libs/ui/ui-menu-helm/src/index.ts"]
+      "@spartan-ng/ui-menu-helm": ["./libs/ui/ui-menu-helm/src/index.ts"],
+      "@spartan-ng/ui-alert-helm": ["./libs/ui/ui-alertdialog-helm/src/index.ts"],
+      "@spartan-ng/ui-breadcrumb-helm": ["./libs/ui/ui-breadcrumb-helm/src/index.ts"],
+      "@spartan-ng/ui-button-helm": ["./libs/ui/ui-button-helm/src/index.ts"],
+      "@spartan-ng/ui-sonner-helm": ["./libs/ui/ui-sonner-helm/src/index.ts"]
     },
     "outDir": "./out-tsc/app",
     "types": []
