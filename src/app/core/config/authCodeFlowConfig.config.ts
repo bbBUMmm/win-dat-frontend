@@ -1,4 +1,4 @@
-import {environment} from '../../../environments/environment.development';
+import {environment} from '../../../environments/environment';
 import {AuthConfig} from 'angular-oauth2-oidc';
 
 export const authCodeFlowConfig: AuthConfig = {
