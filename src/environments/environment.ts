@@ -1,5 +1,5 @@
 export const environment = {
-  keyCloakUrl: 'http://fsa-prykhodko.northeurope.cloudapp.azure.com/auth',
-  beUrl: 'http://fsa-prykhodko.northeurope.cloudapp.azure.com',
-  appUrl: 'http://fsa-prykhodko.northeurope.cloudapp.azure.com',
+  keyCloakUrl: 'http://4.245.186.27/auth',
+  beUrl: 'http://4.245.186.27',
+  appUrl: 'http://4.245.186.27',
 };
