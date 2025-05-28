@@ -45,6 +45,18 @@
       ],
       "@spartan-ng/ui-table-helm": [
         ".\\libs/ui/ui-table-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-sheet-helm": [
+        ".\\libs/ui/ui-sheet-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-input-helm": [
+        ".\\libs/ui/ui-input-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-formfield-helm": [
+        ".\\libs/ui/ui-formfield-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-label-helm": [
+        ".\\libs/ui/ui-label-helm/src/index.ts"
       ]
     }
   },

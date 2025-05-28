@@ -2,9 +2,9 @@
   <button hlmBtn (click)="loadLobbies()">Load Lobbies</button>
   <div *ngIf="loading$ | async" class="mt-2">Loading lobbies...</div>
   <div *ngIf="error$ | async as error" class="mt-4 max-w-md w-full">
-    <div hlmAlert variant="destructive">
+    <div hlmAlert>
       <ng-icon hlm hlmAlertIcon name="lucideTriangleAlert" />
-      <h4 hlmAlertTitle>Unexpected Error</h4>
+      <h4 hlmAlertTitle>Warning</h4>
       <p hlmAlertDesc>{{ error }}</p>
     </div>
   </div>

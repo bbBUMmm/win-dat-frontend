@@ -30,8 +30,23 @@ import {
   HlmMenuShortcutComponent,
   HlmSubMenuComponent,
 } from '@spartan-ng/ui-menu-helm';
-import {UserService} from '../../../user.service';
-import {ToastService} from '../../../core/services/toast.service';
+import {UserService} from '../../core/services/user.service';
+import {ToastService} from '../../core/services/toast.service';
+import {NgIf} from '@angular/common';
+import {BrnSheetContentDirective, BrnSheetTriggerDirective} from '@spartan-ng/brain/sheet';
+
+import {
+  HlmSheetComponent,
+  HlmSheetContentComponent,
+  HlmSheetDescriptionDirective,
+  HlmSheetHeaderComponent,
+  HlmSheetTitleDirective,
+} from '@spartan-ng/ui-sheet-helm';
+import {HlmButtonDirective} from '@spartan-ng/ui-button-helm';
+import {UserCreateComponent} from '../users/user-create/user-create.component';
+import {Router} from '@angular/router';
+
+
 
 @Component({
   selector: 'app-avatar',
@@ -50,7 +65,17 @@ import {ToastService} from '../../../core/services/toast.service';
     HlmMenuItemIconDirective,
     HlmMenuGroupComponent,
 
-    HlmIconDirective,
+    HlmIconDirective, NgIf,
+
+    HlmSheetComponent,
+    HlmSheetContentComponent,
+    HlmSheetDescriptionDirective,
+    HlmSheetHeaderComponent,
+    HlmSheetTitleDirective,
+    BrnSheetContentDirective,
+    BrnSheetTriggerDirective,
+    HlmButtonDirective,
+    UserCreateComponent,
   ],
   providers: [
     provideIcons({
@@ -76,18 +101,33 @@ import {ToastService} from '../../../core/services/toast.service';
 export class AvatarComponent {
   private userService = inject(UserService);
   private toasterService = inject(ToastService);
+  private router = inject(Router); // Inject Router here
+
 
   user = this.userService.getUserSignal();
+  isLoggedIn = this.userService.isLoggedIn;
+
 
   loginUser() {
     this.userService.login()
-    this.toasterService.showToast("login succsefsld", "sdfsdf ahaha")
+    this.toasterService.showToast("Login Attempt", "Attempting to log in...");
   }
 
 
   logoutUser() {
-    if (this.user()){
-      this.userService.logout()
-    }
+    this.userService.logout();
+    this.toasterService.showToast("Logged Out", "You have been successfully logged out.");
+  }
+
+  // @ViewChild(BrnSheetComponent) sheet?: BrnSheetComponent;
+  //
+  // closeSheet() {
+  //   console.log('User created. Closing the sheet.');
+  //   if (this.sheet) {
+  //     this.sheet.close();
+  //   }
+  // }
+  navigateToNotImplemented() {
+    this.router.navigate(['/notImplementedYet']);
   }
 }

@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
-import {LobbyApiService} from '../../../features/lobby/services/lobby-api.service';
+import {LobbyApiService} from '../../core/services/lobby-api.service';
 import {BehaviorSubject, catchError, finalize, Observable, of, switchMap} from 'rxjs';
-import {LobbyModel} from '../../../core/models/lobby-model';
+import {LobbyModel} from '../../core/models/lobby-model';
 import {AsyncPipe, NgIf} from '@angular/common';
 
 // Alert
@@ -19,7 +19,7 @@ import { lucideTriangleAlert } from '@ng-icons/lucide';
 //  Spartan Button
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import {NgIcon} from '@ng-icons/core';
-import {LobbyStateService} from '../../../core/services/lobbyState.service';
+import {LobbyStateService} from '../../core/services/lobbyState.service';
 //  Spartan Button
 @Component({
   selector: 'app-lobby-button',
@@ -51,7 +51,7 @@ export class LobbyButtonComponent {
       return this.lobbiesApiService.getLobbies().pipe(
         finalize(() => this.loading$.next(false)),
         catchError((error) => {
-          this.error$.next('Failed to load lobbies.');
+          this.error$.next('You need to be logged in to be able to see lobbies');
           console.error('Error loading lobbies', error);
           return of([]);
         })

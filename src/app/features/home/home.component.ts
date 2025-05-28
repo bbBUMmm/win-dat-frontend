@@ -1,16 +1,14 @@
 import {Component} from '@angular/core';
-import {NgIconsModule, provideIcons} from '@ng-icons/core'; // ✅ IMPORT THIS
+import {NgIconsModule, provideIcons} from '@ng-icons/core';
 import {lucideBox, lucideTriangleAlert} from '@ng-icons/lucide';
-
-
-
 
 // SOONER
 import { toast } from 'ngx-sonner';
 // SOONER
 import {LobbyComponent} from '../lobby/lobby.component';
-import {LobbyButtonComponent} from '../../shared/components/lobby-button/lobby-button.component';
-import {HeaderComponent} from '../../shared/components/header/header.component';
+import {LobbyButtonComponent} from '../lobby-button/lobby-button.component';
+import {HeaderComponent} from '../header/header.component';
+import {HlmToasterComponent} from '@spartan-ng/ui-sonner-helm';
 
 @Component({
   selector: 'app-home',
@@ -20,10 +18,11 @@ import {HeaderComponent} from '../../shared/components/header/header.component';
     LobbyComponent,
     LobbyButtonComponent,
     HeaderComponent,
-    NgIconsModule, // ✅ <-- REQUIRED
+    NgIconsModule,
+    HlmToasterComponent
   ],
   providers: [
-    provideIcons({lucideBox, lucideTriangleAlert}), // ✅ PROVIDE ICONS
+    provideIcons({lucideBox, lucideTriangleAlert}),
   ],
 })
 export class HomeComponent {

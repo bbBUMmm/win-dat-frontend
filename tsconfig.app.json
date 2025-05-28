@@ -12,7 +12,10 @@
       "@spartan-ng/ui-alertdialog-helm": ["./libs/ui/ui-alertdialog-helm/src/index.ts"],
       "@spartan-ng/ui-breadcrumb-helm": ["./libs/ui/ui-breadcrumb-helm/src/index.ts"],
       "@spartan-ng/ui-button-helm": ["./libs/ui/ui-button-helm/src/index.ts"],
-      "@spartan-ng/ui-sonner-helm": ["./libs/ui/ui-sonner-helm/src/index.ts"]
+      "@spartan-ng/ui-sonner-helm": ["./libs/ui/ui-sonner-helm/src/index.ts"],
+      "@spartan-ng/ui-sheet-helm": ["./libs/ui/ui-sheet-helm/src/index.ts"],
+      "@spartan-ng/ui-label-helm": ["./libs/ui/ui-label-helm/src/index.ts"],
+      "@spartan-ng/ui-input-helm": ["./libs/ui/ui-input-helm/src/index.ts"]
     },
     "outDir": "./out-tsc/app",
     "types": []

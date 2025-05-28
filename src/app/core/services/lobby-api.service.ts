@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {LobbyModel} from '../../../core/models/lobby-model';
+import {LobbyModel} from '../models/lobby-model';
 
 @Injectable({
   providedIn: 'root'

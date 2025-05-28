@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import {NotImplementedYetComponent} from '../../shared/components/not-implemented-yet/not-implemented-yet.component';
+import {NotImplementedYetComponent} from '../not-implemented-yet/not-implemented-yet.component';
 
 @Component({
   selector: 'app-leaderboard',
