@@ -10,6 +10,15 @@
   </div>
 
   <div class="grid grid-cols-4 items-center gap-4">
+    <label hlmLabel for="cs2Username" class="text-right">CS 2 username</label>
+    <input hlmInput id="cs2Username" formControlName="cs2Username" class="col-span-3" />
+    <div *ngIf="userForm.get('cs2Username')?.invalid && (userForm.get('cs2Username')?.dirty || userForm.get('cs2Username')?.touched)"
+         class="col-start-2 col-span-3 text-red-500 text-sm">
+      <span *ngIf="userForm.get('cs2Username')?.errors?.['required']">Username is required.</span>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-4 items-center gap-4">
     <label hlmLabel for="firstName" class="text-right">First Name</label>
     <input hlmInput id="firstName" formControlName="firstName" class="col-span-3" />
     <div *ngIf="userForm.get('firstName')?.invalid && (userForm.get('firstName')?.dirty || userForm.get('firstName')?.touched)"

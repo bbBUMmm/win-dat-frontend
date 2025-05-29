@@ -82,6 +82,14 @@ export class UserService {
   createUser(userData: UserCreateRequest): Observable<any> {
     return this.http.post(`/users`, userData);
   }
+
+  connectToLobby(lobbyId: number ): Observable<any> {
+    return this.http.post(`/lobbies/${lobbyId}/users`, lobbyId);
+  }
+
+  getLeaderBoard(): Observable<UserModel[]> {
+    return this.http.get<UserModel[]>(`/users/leaderboard`);
+  }
 }
 
 

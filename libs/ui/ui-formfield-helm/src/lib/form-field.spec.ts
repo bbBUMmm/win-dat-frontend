@@ -3,6 +3,7 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { render, screen } from '@testing-library/angular';
+// @ts-ignore
 import userEvent from '@testing-library/user-event';
 
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';

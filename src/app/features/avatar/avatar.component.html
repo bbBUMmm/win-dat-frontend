@@ -19,7 +19,11 @@
     <hlm-sheet-content *brnSheetContent="let ctx">
       <hlm-sheet-header>
         <h3 hlmSheetTitle>Create New Account</h3>
-        <p hlmSheetDescription>Create new account here. Click save when you're done.</p>
+        <p hlmSheetDescription>Create new account here. Click save when you're done. <br> <span><strong>*Reminder: be aware
+          to provide your real CS2 username. Otherwise service will not be able to transfer credits to
+          your account</strong></span>
+        </p>
+
       </hlm-sheet-header>
       <div class="py-4 grid gap-4">
         <app-user-create (userCreated)="ctx.close()"></app-user-create>

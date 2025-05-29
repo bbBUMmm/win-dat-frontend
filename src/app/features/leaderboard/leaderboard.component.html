@@ -1,1 +1,38 @@
-<app-not-implemented-yet></app-not-implemented-yet>
+<app-header></app-header>
+
+<div class="flex flex-col items-center p-4">
+  <h2 class="text-3xl font-bold mb-6">Leaderboard</h2>
+
+  <div class="max-h-[500px] overflow-y-auto w-full max-w-4xl rounded-md border">
+    <hlm-table class="w-full">
+      <hlm-trow class="bg-muted/50">
+        <hlm-th class="w-20 text-center">Place</hlm-th>
+        <hlm-th class="flex-1">Username</hlm-th>
+        <hlm-th class="w-40 text-center">Wins Count</hlm-th>
+        <hlm-th class="w-40 text-right">Monthly Reward</hlm-th>
+      </hlm-trow>
+
+      @if (leaderboard().length > 0) {
+        @for (user of leaderboard(); track user.id; let i = $index) {
+          <hlm-trow>
+            <hlm-td class="w-20 text-center font-semibold">{{ i + 1 }}</hlm-td>
+            <hlm-td class="flex-1 font-medium">{{ user.loginName }}</hlm-td>
+            <hlm-td class="w-40 text-center">{{ user.gamesWon }}</hlm-td>
+            <hlm-td class="w-40 text-right">
+              @if (i < 10) {
+                {{ getMonthlyReward(i + 1) }} credits
+              } @else {
+                0 credits
+              }
+            </hlm-td>
+          </hlm-trow>
+        }
+      } @else {
+        <hlm-trow>
+          <hlm-td colspan="4" class="text-center py-8 text-muted-foreground">No users found on the leaderboard.</hlm-td>
+        </hlm-trow>
+      }
+    </hlm-table>
+  </div>
+</div>
+<hlm-toaster />

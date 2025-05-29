@@ -12,7 +12,6 @@ import {Subject, takeUntil} from 'rxjs';
 import {toast} from 'ngx-sonner';
 
 
-
 @Component({
   selector: 'app-user-create',
   imports: [CommonModule,
@@ -41,6 +40,7 @@ export class UserCreateComponent implements OnInit, OnDestroy {
   constructor() {
     this.userForm = this.fb.group({
       username: ['', Validators.required],
+      cs2Username: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -73,7 +73,8 @@ export class UserCreateComponent implements OnInit, OnDestroy {
           },
           error: (error) => {
             console.error('Error creating user:', error);
-            this.toastService.showToast('Error', error.error?.message || 'Failed to create user. Please try again.');
+            this.toastService.showToast('Error', error.error?.message || 'User with this username or email already exists' +
+              ' Please try again with different credentials.');
           }
         });
     } else {

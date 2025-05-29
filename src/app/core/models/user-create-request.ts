@@ -4,4 +4,5 @@ export interface UserCreateRequest {
   lastName: string;
   email: string;
   password: string;
+  cs2Username: string;
 }
