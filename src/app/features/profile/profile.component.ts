@@ -1,21 +1,11 @@
-// src/app/pages/profile/profile.component.ts
 
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { UserService } from '../../core/services/user.service';
 import { UserModel } from '../../core/models/user-model';
-import { CommonModule } from '@angular/common'; // Для *ngIf, *ngFor (якщо знадобиться)
-import { toast } from 'ngx-sonner'; // Для тостів
+import { CommonModule } from '@angular/common';
+import { toast } from 'ngx-sonner';
 
-// Spartan UI Imports (ви можете додати їх, якщо хочете використовувати картки чи інші елементи Spartan)
-import {
-  HlmCardContentDirective,
-  HlmCardDescriptionDirective,
-  HlmCardDirective,
-  HlmCardHeaderDirective,
-  HlmCardTitleDirective,
-} from '@spartan-ng/ui-card-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import {HlmToasterComponent} from '@spartan-ng/ui-sonner-helm';
 
 @Component({
@@ -25,12 +15,6 @@ import {HlmToasterComponent} from '@spartan-ng/ui-sonner-helm';
     CommonModule,
     HeaderComponent,
 
-    HlmCardDirective,
-    HlmCardHeaderDirective,
-    HlmCardTitleDirective,
-    HlmCardDescriptionDirective,
-    HlmCardContentDirective,
-    HlmButtonDirective,
     HlmToasterComponent
 
   ],
@@ -39,10 +23,9 @@ import {HlmToasterComponent} from '@spartan-ng/ui-sonner-helm';
 export class ProfileComponent implements OnInit {
 
   private userService: UserService = inject(UserService);
-  userProfile = signal<UserModel | undefined>(undefined); // Signal для зберігання даних профілю
-  isLoading = signal(true); // Signal для стану завантаження
-  hasError = signal(false); // Signal для стану помилки
-
+  userProfile = signal<UserModel | undefined>(undefined);
+  isLoading = signal(true);
+  hasError = signal(false);
   ngOnInit() {
     this.loadUserProfile();
   }

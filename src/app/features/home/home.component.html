@@ -4,34 +4,36 @@
   <div class="mt-4">
     <div class="gap-2.5 flex flex-col">
       <div class="flex flex-col items-center">
+        <div class="flex gap-5 justify-between">
+          <hlm-dialog>
+            <button (click)="checkLoggedIn()" hlmBtn brnDialogTrigger variant='outline'>Create Lobby</button>
+            <hlm-dialog-content class="sm:max-w-[425px]" *brnDialogContent="let ctx">
+              <hlm-dialog-header>
+                <h3 hlmDialogTitle>Create Lobby</h3>
+                <p hlmDialogDescription>Enter a name for your lobby and the amount for the bet.
+                  Click save when you're done.</p>
+              </hlm-dialog-header>
+              <div class="py-4 grid gap-4">
+                <div class="items-center grid grid-cols-4 gap-4">
+                  <label hlmLabel for="lobbyNameInput" class="text-right">Name</label>
+                  <input hlmInput id="lobbyNameInput" class="col-span-3" [(ngModel)]="lobbyName"/>
+                </div>
+                <div class="items-center grid grid-cols-4 gap-4">
+                  <label hlmLabel for="amountInput" class="text-right">Amount</label>
+                  <input hlmInput id="amountInput" type="number" class="col-span-3" [(ngModel)]="amount"/>
+                </div>
+              </div>
+              <hlm-dialog-footer>
+                <button hlmBtn type="submit" (click)="createLobbyAndCloseDialog(ctx)">Save changes</button>
+              </hlm-dialog-footer>
+            </hlm-dialog-content>
+          </hlm-dialog>
+          <app-lobby-button></app-lobby-button>
 
-        <hlm-dialog>
-          <button hlmBtn brnDialogTrigger variant='outline'>Create Lobby</button>
-          <hlm-dialog-content class="sm:max-w-[425px]" *brnDialogContent="let ctx">
-            <hlm-dialog-header>
-              <h3 hlmDialogTitle>Create Lobby</h3>
-              <p hlmDialogDescription>Enter a name for your lobby and the amount for the bet.
-                Click save when you're done.</p>
-            </hlm-dialog-header>
-            <div class="py-4 grid gap-4">
-              <div class="items-center grid grid-cols-4 gap-4">
-                <label hlmLabel for="lobbyNameInput" class="text-right">Name</label>
-                <input hlmInput id="lobbyNameInput" class="col-span-3" [(ngModel)]="lobbyName" />
-              </div>
-              <div class="items-center grid grid-cols-4 gap-4">
-                <label hlmLabel for="amountInput" class="text-right">Amount</label>
-                <input hlmInput id="amountInput" type="number" class="col-span-3" [(ngModel)]="amount" />
-              </div>
-            </div>
-            <hlm-dialog-footer>
-              <button hlmBtn type="submit" (click)="createLobbyAndCloseDialog(ctx)">Save changes</button>
-            </hlm-dialog-footer>
-          </hlm-dialog-content>
-        </hlm-dialog>
+        </div>
       </div>
-      <app-lobby-button></app-lobby-button>
     </div>
-    <hlm-toaster />
+    <hlm-toaster/>
   </div>
 </div>
 
