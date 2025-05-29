@@ -90,6 +90,12 @@ export class UserService {
   getLeaderBoard(): Observable<UserModel[]> {
     return this.http.get<UserModel[]>(`/users/leaderboard`);
   }
+
+  // ось цей метод повертає потріброго юзера
+
+  getAuthenticatedUser(): Observable<UserModel> {
+    return this.http.get<UserModel>(`/users/me`);
+  }
 }
 
 

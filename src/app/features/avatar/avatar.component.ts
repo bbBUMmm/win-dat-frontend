@@ -119,15 +119,11 @@ export class AvatarComponent {
     this.toasterService.showToast("Logged Out", "You have been successfully logged out.");
   }
 
-  // @ViewChild(BrnSheetComponent) sheet?: BrnSheetComponent;
-  //
-  // closeSheet() {
-  //   console.log('User created. Closing the sheet.');
-  //   if (this.sheet) {
-  //     this.sheet.close();
-  //   }
-  // }
   navigateToNotImplemented() {
     this.router.navigate(['/notImplementedYet']);
+  }
+
+  navigateToProfile() {
+    this.router.navigate(['/profile']);
   }
 }
