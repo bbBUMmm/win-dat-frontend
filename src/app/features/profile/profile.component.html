@@ -1,8 +1,8 @@
 <app-header></app-header>
 
 <div class="min-h-screen text-gray-100 font-inter">
-  <div class="container mx-auto px-4 py-5 max-w-3xl"> <div class="bg-gray-800 rounded-xl shadow-lg mb-6 p-5 flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-5"> <img class="w-24 h-24 rounded-full border-4 border-gray-900 object-cover shadow-xl"
-                                                                                                                                                                                                             src="https://placehold.co/160x160/2d3748/fff?text=Avatar"
+  <div class="container mx-auto px-4 py-5 max-w-3xl"> <div class="bg-primary rounded-xl shadow-lg mb-6 p-5 flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-5"> <img class="w-24 h-24 rounded-full object-cover shadow-xl"
+                                                                                                                                                                                                             src="/images/avatar.png"
                                                                                                                                                                                                              alt="User Avatar">
 
     <div class="text-center sm:text-left flex-grow">
@@ -11,7 +11,7 @@
     </div>
   </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-3xl mx-auto"> <div class="md:col-span-2 bg-gray-800 rounded-xl shadow-lg p-5"> <h2 class="text-lg font-bold text-white mb-4 border-b border-gray-700 pb-2 sm:text-xl">Game Statistics</h2> @if (isLoading()) {
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-3xl mx-auto"> <div class="md:col-span-2 bg-primary rounded-xl shadow-lg p-5"> <h2 class="text-lg font-bold text-white mb-4 border-b border-gray-700 pb-2 sm:text-xl">Game Statistics</h2> @if (isLoading()) {
       <div class="text-center py-5"> <p class="text-gray-400 text-sm">Loading profile data...</p>
       </div>
     } @else if (hasError()) {
@@ -19,29 +19,29 @@
         <p class="mb-2 text-sm">Failed to load profile data.</p>
         <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-1.5 px-3 rounded-lg shadow-md transition duration-300" (click)="loadUserProfile()">Try Again</button> </div>
     } @else if (userProfile()) {
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"> <div class="bg-gray-700 rounded-lg p-3 shadow-md flex flex-col items-center text-center"> <span class="text-gray-400 text-xs">CS2 Username</span> <p class="text-white text-lg font-bold mt-0.5">{{ userProfile()!.cs2Username || 'Not set' }}</p> </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"> <div class=" rounded-lg p-3 shadow-md flex flex-col items-center text-center"> <span class="text-gray-400 text-xs">CS2 Username</span> <p class="text-white text-lg font-bold mt-0.5">{{ userProfile()!.cs2Username || 'Not set' }}</p> </div>
 
-        <div class="bg-gray-700 rounded-lg p-3 shadow-md flex flex-col items-center text-center">
+        <div class="rounded-lg p-3 shadow-md flex flex-col items-center text-center">
           <span class="text-gray-400 text-xs">Credits</span>
           <p class="text-white text-lg font-bold mt-0.5">{{ userProfile()!.credits }}</p>
         </div>
 
-        <div class="bg-gray-700 rounded-lg p-3 shadow-md flex flex-col items-center text-center">
+        <div class=" rounded-lg p-3 shadow-md flex flex-col items-center text-center">
           <span class="text-gray-400 text-xs">Games Played</span>
           <p class="text-white text-lg font-bold mt-0.5">{{ userProfile()!.gamesPlayed }}</p>
         </div>
 
-        <div class="bg-gray-700 rounded-lg p-3 shadow-md flex flex-col items-center text-center">
+        <div class=" rounded-lg p-3 shadow-md flex flex-col items-center text-center">
           <span class="text-gray-400 text-xs">Games Won</span>
           <p class="text-green-400 text-lg font-bold mt-0.5">{{ userProfile()!.gamesWon }}</p>
         </div>
 
-        <div class="bg-gray-700 rounded-lg p-3 shadow-md flex flex-col items-center text-center">
+        <div class="rounded-lg p-3 shadow-md flex flex-col items-center text-center">
           <span class="text-gray-400 text-xs">Games Lost</span>
           <p class="text-red-400 text-lg font-bold mt-0.5">{{ userProfile()!.gamesLost }}</p>
         </div>
 
-        <div class="bg-gray-700 rounded-lg p-3 shadow-md flex flex-col items-center text-center">
+        <div class="rounded-lg p-3 shadow-md flex flex-col items-center text-center">
           <span class="text-gray-400 text-xs">Win Rate</span>
           <p class="text-yellow-400 text-lg font-bold mt-0.5">
             {{ userProfile()!.gamesPlayed > 0 ? ((userProfile()!.gamesWon / userProfile()!.gamesPlayed) * 100).toFixed(2) : '0.00' }}%
@@ -55,7 +55,7 @@
     }
     </div>
 
-      <div class="md:col-span-1 bg-gray-800 rounded-xl shadow-lg p-5"> <h2 class="text-lg font-bold text-white mb-4 border-b border-gray-700 pb-2 sm:text-xl">About</h2> @if (isLoading()) {
+      <div class="md:col-span-1 bg-primary rounded-xl shadow-lg p-5"> <h2 class="text-lg font-bold text-white mb-4 border-b border-gray-700 pb-2 sm:text-xl">About</h2> @if (isLoading()) {
         <div class="text-center py-3">
           <p class="text-gray-400 text-sm">Loading...</p>
         </div>
