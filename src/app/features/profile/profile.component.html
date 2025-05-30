@@ -1,0 +1,92 @@
+<app-header></app-header>
+
+<div class="min-h-screen text-gray-100 font-inter">
+  <div class="container mx-auto px-4 py-5 max-w-3xl"> <div class="bg-primary rounded-xl shadow-lg mb-6 p-5 flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-5"> <img class="w-24 h-24 rounded-full object-cover shadow-xl"
+                                                                                                                                                                                                             src="/images/avatar.png"
+                                                                                                                                                                                                             alt="User Avatar">
+
+    <div class="text-center sm:text-left flex-grow">
+      @if (userProfile(); as user) {
+        <h1 class="text-2xl font-bold text-white mb-0.5 sm:text-3xl">{{ user.loginName }}</h1> <p class="text-gray-400 text-sm sm:text-base">Member since: 2025</p> }
+    </div>
+  </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-3xl mx-auto"> <div class="md:col-span-2 bg-primary rounded-xl shadow-lg p-5"> <h2 class="text-lg font-bold text-white mb-4 border-b border-gray-700 pb-2 sm:text-xl">Game Statistics</h2> @if (isLoading()) {
+      <div class="text-center py-5"> <p class="text-gray-400 text-sm">Loading profile data...</p>
+      </div>
+    } @else if (hasError()) {
+      <div class="text-center py-5 text-red-500">
+        <p class="mb-2 text-sm">Failed to load profile data.</p>
+        <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-1.5 px-3 rounded-lg shadow-md transition duration-300" (click)="loadUserProfile()">Try Again</button> </div>
+    } @else if (userProfile()) {
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"> <div class=" rounded-lg p-3 shadow-md flex flex-col items-center text-center"> <span class="text-gray-400 text-xs">CS2 Username</span> <p class="text-white text-lg font-bold mt-0.5">{{ userProfile()!.cs2Username || 'Not set' }}</p> </div>
+
+        <div class="rounded-lg p-3 shadow-md flex flex-col items-center text-center">
+          <span class="text-gray-400 text-xs">Credits</span>
+          <p class="text-white text-lg font-bold mt-0.5">{{ userProfile()!.credits }}</p>
+        </div>
+
+        <div class=" rounded-lg p-3 shadow-md flex flex-col items-center text-center">
+          <span class="text-gray-400 text-xs">Games Played</span>
+          <p class="text-white text-lg font-bold mt-0.5">{{ userProfile()!.gamesPlayed }}</p>
+        </div>
+
+        <div class=" rounded-lg p-3 shadow-md flex flex-col items-center text-center">
+          <span class="text-gray-400 text-xs">Games Won</span>
+          <p class="text-green-400 text-lg font-bold mt-0.5">{{ userProfile()!.gamesWon }}</p>
+        </div>
+
+        <div class="rounded-lg p-3 shadow-md flex flex-col items-center text-center">
+          <span class="text-gray-400 text-xs">Games Lost</span>
+          <p class="text-red-400 text-lg font-bold mt-0.5">{{ userProfile()!.gamesLost }}</p>
+        </div>
+
+        <div class="rounded-lg p-3 shadow-md flex flex-col items-center text-center">
+          <span class="text-gray-400 text-xs">Win Rate</span>
+          <p class="text-yellow-400 text-lg font-bold mt-0.5">
+            {{ userProfile()!.gamesPlayed > 0 ? ((userProfile()!.gamesWon / userProfile()!.gamesPlayed) * 100).toFixed(2) : '0.00' }}%
+          </p>
+        </div>
+      </div>
+    } @else {
+      <div class="text-center py-5 text-gray-400">
+        <p class="text-sm">No game statistics available.</p>
+      </div>
+    }
+    </div>
+
+      <div class="md:col-span-1 bg-primary rounded-xl shadow-lg p-5"> <h2 class="text-lg font-bold text-white mb-4 border-b border-gray-700 pb-2 sm:text-xl">About</h2> @if (isLoading()) {
+        <div class="text-center py-3">
+          <p class="text-gray-400 text-sm">Loading...</p>
+        </div>
+      } @else if (hasError()) {
+        <div class="text-center py-3 text-red-500">
+          <p class="text-sm">Error loading info.</p>
+        </div>
+      } @else if (userProfile()) {
+        <div class="space-y-3"> @if (userProfile()!.lobbyId) {
+          <div>
+            <p class="font-medium text-gray-300 text-sm">Current Lobby ID:</p> <p class="text-white text-base">{{ userProfile()!.lobbyId }}</p> </div>
+        }
+          <div>
+            <p class="font-medium text-gray-300 text-sm">Bio:</p> <p class="text-white text-base">A dedicated player of Counter-Strike 2.</p> </div>
+          <div class="mt-4"> <p class="font-medium text-gray-300 mb-0.5 text-sm">Social Links:</p> <div class="flex space-x-2"> <a href="https://steamcommunity.com/id/nodempr/" class="text-gray-400 hover:text-blue-500 transition duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.35c0 .732.593 1.325 1.325 1.325h21.35c.732 0 1.325-.593 1.325-1.325v-21.35c0-.732-.593-1.325-1.325-1.325zm-4.025 18.025h-2.45v-5.05c0-1.2.6-1.8 1.5-1.8s1.5.6 1.5 1.8v5.05zm-6.05 0h-2.45v-5.05c0-1.2.6-1.8 1.5-1.8s1.5.6 1.5 1.8v5.05zm-6.05 0h-2.45v-5.05c0-1.2.6-1.8 1.5-1.8s1.5.6 1.5 1.8v5.05z"/></svg>
+          </a>
+            <a href="https://steamcommunity.com/id/nodempr/" class="text-gray-400 hover:text-purple-500 transition duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.118 0H4.882C2.185 0 0 2.185 0 4.882v14.236C0 21.815 2.185 24 4.882 24h14.236C21.815 24 24 21.815 24 19.118V4.882C24 2.185 21.815 0 19.118 0zM18.025 16.275h-2.45v-5.05c0-1.2.6-1.8 1.5-1.8s1.5.6 1.5 1.8v5.05zm-6.05 0h-2.45v-5.05c0-1.2.6-1.8 1.5-1.8s1.5.6 1.5 1.8v5.05zm-6.05 0h-2.45v-5.05c0-1.2.6-1.8 1.5-1.8s1.5.6 1.5 1.8v5.05z"/></svg>
+            </a>
+          </div>
+          </div>
+        </div>
+      } @else {
+        <div class="text-center py-5 text-gray-400">
+          <p class="text-sm">No additional information available.</p>
+        </div>
+      }
+      </div>
+    </div>
+  </div>
+</div>
+
+<hlm-toaster />

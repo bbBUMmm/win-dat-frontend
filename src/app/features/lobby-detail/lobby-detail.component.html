@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+<div class="flex flex-col items-center p-4">
+  <section class="w-full max-w-lg p-4" hlmCard>
+    @if (lobby(); as currentLobby) {
+      <div hlmCardHeader>
+        <h3 hlmCardTitle>{{ currentLobby.name }}</h3>
+        <p hlmCardDescription>Here is information about the lobby you connected to. <br>
+          <strong>Before you connect to the game server be sure that your CS2 game is up and running.</strong></p>
+      </div>
+      <div hlmCardContent>
+        <p class="mb-2"><strong>Bet to enter the match: </strong> <span>{{currentLobby.amount}} credits</span></p>
+        <p class="mb-2"><strong>Players:</strong></p>
+        @if (currentLobby.userList !== undefined) {
+          @if (currentLobby.userList.length > 0) {
+            <ul class="list-disc pl-5">
+              @for (user of currentLobby.userList; track user.id; let i = $index) {
+                <li>Player {{ i + 1 }}: <strong>{{ user.loginName }}</strong></li>
+              }
+            </ul>
+          } @else {
+            <p>Currently no other players in the lobby.</p>
+          }
+        } @else {
+          <p>Currently no other players in the lobby.</p>
+        }
+
+
+        @if (duelWinner(); as winner) {
+          <div class="mt-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded-md">
+            <p class="font-bold">Duel Result:</p>
+            <p>The winner is: <strong class="text-green-800">{{ winner }}</strong>!</p>
+            <p>The game has concluded.</p>
+          </div>
+        } @else {
+          <div class="mt-4 p-3 bg-blue-100 border border-blue-400 text-blue-700 rounded-md">
+            <p>Awaiting duel results...</p>
+          </div>
+        }
+
+
+      </div>
+      <div hlmCardFooter class="justify-between">
+        <a href="steam://connect/192.168.196.133:27015"><button hlmBtn>Connect to the game server</button></a>
+        <button (click)="leaveLobby()" hlmBtn variant="outline">Leave Lobby</button>
+      </div>
+    } @else {
+      <div hlmCardHeader>
+        <h3 hlmCardTitle>Loading Lobby</h3>
+        <p hlmCardDescription>Please wait...</p>
+      </div>
+      <div hlmCardContent>
+        <p>Loading lobby data...</p>
+      </div>
+      <div hlmCardFooter class="justify-end">
+        <button hlmBtn variant="outline" disabled>Loading...</button>
+      </div>
+    }
+  </section>
+</div>

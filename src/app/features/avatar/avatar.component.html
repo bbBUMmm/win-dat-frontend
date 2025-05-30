@@ -1,0 +1,141 @@
+<div class="flex items-center">
+  <div class="avatar-wrapper">
+    <hlm-avatar variant="large" [brnMenuTriggerFor]="menu">
+      <img src="/images/avatar.png" alt="spartan logo. Resembling a spartanic shield" hlmAvatarImage/>
+      <span class="bg-[#FD005B] text-white" hlmAvatarFallback>RG</span>
+    </hlm-avatar>
+  </div>
+
+  <hlm-sheet class="ml-4">
+    <ng-container *ngIf="!isLoggedIn();">
+
+      <small>If you do not have one</small>
+      <br>
+      <button id="left" variant="outline" brnSheetTrigger side="left" hlmBtn>Create Account</button>
+
+    </ng-container>
+
+
+    <hlm-sheet-content *brnSheetContent="let ctx">
+      <hlm-sheet-header>
+        <h3 hlmSheetTitle>Create New Account</h3>
+        <p hlmSheetDescription>Create new account here. Click save when you're done. <br> <span><strong>*Reminder: be aware
+          to provide your real CS2 username. Otherwise service will not be able to transfer credits to
+          your account</strong></span>
+        </p>
+
+      </hlm-sheet-header>
+      <div class="py-4 grid gap-4">
+        <app-user-create (userCreated)="ctx.close()"></app-user-create>
+      </div>
+    </hlm-sheet-content>
+  </hlm-sheet>
+</div>
+
+<ng-template #menu>
+  <hlm-menu class="w-56">
+    <hlm-menu-label>My Account</hlm-menu-label>
+    <hlm-menu-separator/>
+    <hlm-menu-group>
+      <ng-container *ngIf="isLoggedIn()">
+        <button hlmMenuItem (click)="navigateToProfile()">
+          <ng-icon hlm name="lucideUser" hlmMenuIcon/>
+          <span>Profile</span>
+          <hlm-menu-shortcut>⇧⌘P</hlm-menu-shortcut>
+        </button>
+
+        <button hlmMenuItem (click)="navigateToNotImplemented()">
+          <ng-icon hlm name="lucideLayers" hlmMenuIcon/>
+          <span>Billing</span>
+          <hlm-menu-shortcut>⌘B</hlm-menu-shortcut>
+        </button>
+
+        <button hlmMenuItem disabled>
+          <ng-icon hlm name="lucideCog" hlmMenuIcon/>
+          <span>Settings</span>
+          <hlm-menu-shortcut>⌘S</hlm-menu-shortcut>
+        </button>
+
+        <button hlmMenuItem disabled>
+          <ng-icon hlm name="lucideKeyboard" hlmMenuIcon/>
+          <span>Keyboard Shortcuts</span>
+          <hlm-menu-shortcut>⌘K</hlm-menu-shortcut>
+        </button>
+      </ng-container>
+    </hlm-menu-group>
+
+    <hlm-menu-separator/>
+
+    <hlm-menu-group>
+      <button hlmMenuItem disabled>
+        <ng-icon hlm name="lucideCircleUser" hlmMenuIcon/>
+        <span>Team</span>
+        <hlm-menu-shortcut>⌘B</hlm-menu-shortcut>
+      </button>
+
+      <button hlmMenuItem disabled [brnMenuTriggerFor]="invite">
+        <ng-icon hlm name="lucideSmile" hlmMenuIcon/>
+        <span>Invite Users</span>
+        <hlm-menu-item-sub-indicator/>
+      </button>
+
+      <button hlmMenuItem disabled>
+        <ng-icon hlm name="lucidePlus" hlmMenuIcon/>
+        <span>New Team</span>
+        <hlm-menu-shortcut>⌘+T</hlm-menu-shortcut>
+      </button>
+    </hlm-menu-group>
+
+    <hlm-menu-separator/>
+
+    <hlm-menu-group>
+      <button hlmMenuItem disabled>
+        <ng-icon hlm name="lucideCircleHelp" hlmMenuIcon/>
+        <span>Support</span>
+      </button>
+
+      <button hlmMenuItem disabled>
+        <ng-icon hlm name="lucideCode" hlmMenuIcon/>
+        <span>API</span>
+      </button>
+    </hlm-menu-group>
+
+    <hlm-menu-separator/>
+
+    <ng-container *ngIf="!isLoggedIn(); else logoutBlock">
+      <button (click)="loginUser()" hlmMenuItem>
+        <ng-icon hlm name="lucideLogOut" hlmMenuIcon/>
+        <span>Login</span>
+        <hlm-menu-shortcut>⇧⌘L</hlm-menu-shortcut>
+      </button>
+    </ng-container>
+
+    <ng-template #logoutBlock>
+      <button (click)="logoutUser()" hlmMenuItem>
+        <ng-icon hlm name="lucideLogOut" hlmMenuIcon/>
+        <span>Logout</span>
+        <hlm-menu-shortcut>⇧⌘Q</hlm-menu-shortcut>
+      </button>
+    </ng-template>
+
+  </hlm-menu>
+</ng-template>
+
+<ng-template #invite>
+  <hlm-sub-menu>
+    <button hlmMenuItem>
+      <ng-icon hlm name="lucideMail" hlmMenuIcon/>
+      Email
+    </button>
+
+    <button hlmMenuItem>
+      <ng-icon hlm name="lucideMessageSquare" hlmMenuIcon/>
+      Message
+    </button>
+    <hlm-menu-separator/>
+    <button hlmMenuItem>
+      <ng-icon hlm name="lucideCirclePlus" hlmMenuIcon/>
+      <span>More</span>
+    </button>
+  </hlm-sub-menu>
+</ng-template>

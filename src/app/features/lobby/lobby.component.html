@@ -1,15 +1,36 @@
-<hlm-table class="w-full min-w-[400px]">
-  <hlm-caption>Available Lobbies</hlm-caption>
-  <hlm-trow>
-    <hlm-th class="w-52">Name</hlm-th>
-    <hlm-th class="w-60">Status</hlm-th>
-    <hlm-th class="flex-1">Players</hlm-th>
-    <hlm-th class="justify-end w-40">Type</hlm-th>
-  </hlm-trow>
-
-  @for (lobby of lobbies(); track lobby.id) {
+<div class="max-h-[400px] overflow-y-auto w-full">
+  <hlm-table class="w-full min-w-[400px]">
     <hlm-trow>
-      <hlm-td class="w-52">{{ lobby.name }}</hlm-td>
+      <hlm-th class="w-52">Name</hlm-th>
+      <hlm-th class="flex-1 justify-center">Players</hlm-th>
+      <hlm-th class="justify-end w-40">Amount</hlm-th>
+      <hlm-th class="justify-end w-40">Connect</hlm-th>
     </hlm-trow>
-  }
-</hlm-table>
+
+    @for (lobby of lobbies(); track lobby.id) {
+      <hlm-trow>
+        <hlm-td class="w-52">{{ lobby.name }}</hlm-td>
+
+        @if (lobby.userList === undefined || lobby.userList.length === 0) {
+          <hlm-td class="flex-1 justify-center">Empty</hlm-td>
+        } @else if (lobby.userList.length === 1) {
+          <hlm-td class="flex-1 justify-center">One</hlm-td>
+        } @else if (lobby.userList.length === 2) {
+          <hlm-td class="flex-1 justify-center">Full</hlm-td>
+        } @else {
+          <hlm-td class="flex-1 justify-center">N/A</hlm-td>
+        }
+
+        <hlm-td class="justify-end w-40">{{ lobby.amount }}</hlm-td>
+
+        <hlm-td class="justify-end w-40">
+          <button (click)="redirectOrConnect(lobby.id)" hlmBtn size="icon" variant="outline"><ng-icon hlm size='sm' name="lucideChevronRight" /></button>
+        </hlm-td>
+
+      </hlm-trow>
+    }
+  </hlm-table>
+</div>
+
+<hlm-toaster />
+
