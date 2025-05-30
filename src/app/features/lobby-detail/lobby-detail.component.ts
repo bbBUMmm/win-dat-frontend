@@ -52,9 +52,8 @@ export class LobbyDetailComponent implements OnInit, OnDestroy {
     this.route.paramMap.subscribe(params => {
       const lobbyId = Number(params.get('id'));
       if (lobbyId) {
-        // Й ось сюди треба прокинути лоббі ід
-        this.duelWatcher.startPolling(lobbyId); // Змінено: Передаємо lobbyId сюди
-        this.subscribeToDuelResults(); // Цей рядок можна залишити тут
+        this.duelWatcher.startPolling(lobbyId);
+        this.subscribeToDuelResults();
 
         this.lobbyService.getOneLobby(lobbyId).subscribe({
           next: (data) => {

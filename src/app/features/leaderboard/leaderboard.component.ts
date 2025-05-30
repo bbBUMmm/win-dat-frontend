@@ -43,7 +43,6 @@ export class LeaderboardComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getLeaderBoard().subscribe({
       next: (users: UserModel[]) => {
-        // Сортуємо користувачів за кількістю виграних ігор у спадному порядку
         const sortedUsers = users.sort((a, b) => b.gamesWon - a.gamesWon);
         this.leaderboard.set(sortedUsers);
       },
@@ -56,8 +55,7 @@ export class LeaderboardComponent implements OnInit {
     });
   }
 
-  // Метод для отримання місячної винагороди за місце
   getMonthlyReward(place: number): number {
-    return this.prizes[place] || 0; // Повертаємо 0, якщо місце не входить до топ-10
+    return this.prizes[place] || 0;
   }
 }

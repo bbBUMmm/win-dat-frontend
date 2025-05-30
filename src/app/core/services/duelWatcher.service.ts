@@ -13,25 +13,22 @@ export class DuelWatcherService {
   duelResult$ = this.duelResultSubject.asObservable();
 
   private pollingSubscription?: Subscription;
-  // private currentLobbyId: number | null = null; // Ця змінна більше не потрібна
 
   constructor(private http: HttpClient) {
   }
 
-  // Метод setLobbyId більше не потрібен
 
-  startPolling(lobbyId: number) { // Змінено: lobbyId приймається як параметр
+  startPolling(lobbyId: number) {
     if (this.pollingSubscription) return;
-    if (lobbyId === null) { // Перевірка на наявність lobbyId
+    if (lobbyId === null) {
       console.error('Lobby ID is not set for DuelWatcherService.');
       return;
     }
 
     this.pollingSubscription = interval(3000).subscribe(() => {
-      // Змінено: Використовуємо lobbyId, переданий як параметр
-      this.lobbyService.getWinnerOfLobby(lobbyId) // Використовуємо getWinnerOfCs2Duel
+      this.lobbyService.getWinnerOfLobby(lobbyId)
         .subscribe((response) => {
-          if (response.winnerUsername) { // Змінено: Використовуємо winnerUsername
+          if (response.winnerUsername) {
             this.duelResultSubject.next(response.winnerUsername);
             this.stopPolling();
           }
@@ -46,6 +43,5 @@ export class DuelWatcherService {
 
   clear() {
     this.duelResultSubject.next(null);
-    // this.currentLobbyId = null; // Цей рядок більше не потрібен
   }
 }

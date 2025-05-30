@@ -3,10 +3,11 @@ import {UserModel} from '../models/user-model';
 import {OAuthService} from 'angular-oauth2-oidc';
 import {authCodeFlowConfig} from '../config/authCodeFlowConfig.config';
 import {ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot} from '@angular/router';
-import {environment} from '../../../environments/environment.development';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {UserCreateRequest} from '../models/user-create-request';
+import { environment } from '../../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -74,26 +75,21 @@ export class UserService {
       })
   }
 
-  /**
-   * Відправляє запит на створення нового користувача.
-   * @param userData Дані нового користувача.
-   * @returns Observable з відповіддю від бекенду.
-   */
   createUser(userData: UserCreateRequest): Observable<any> {
-    return this.http.post(`/users`, userData);
+    return this.http.post(`${environment.beUrl}/users`, userData);
   }
 
   connectToLobby(lobbyId: number ): Observable<any> {
-    return this.http.post(`/lobbies/${lobbyId}/users`, lobbyId);
+    return this.http.post(`${environment.beUrl}/lobbies/${lobbyId}/users`, lobbyId);
   }
 
   getLeaderBoard(): Observable<UserModel[]> {
-    return this.http.get<UserModel[]>(`/users/leaderboard`);
+    return this.http.get<UserModel[]>(`${environment.beUrl}/users/leaderboard`);
   }
 
 
   getAuthenticatedUser(): Observable<UserModel> {
-    return this.http.get<UserModel>(`/users/me`);
+    return this.http.get<UserModel>(`${environment.beUrl}/users/me`);
   }
 }
 

@@ -70,7 +70,6 @@ export class LobbyButtonComponent {
   loading$ = new BehaviorSubject<boolean>(false);
   error$ = new BehaviorSubject<string | null>(null);
 
-  // Видалено автоматичну підписку
 
   loadLobbies() {
     this.refreshLobbies$.next(undefined);
